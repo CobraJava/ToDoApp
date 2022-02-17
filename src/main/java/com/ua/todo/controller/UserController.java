@@ -35,7 +35,9 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void delete(@PathVariable Long id){ userService.delete(id);}
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
+    }
 
     @GetMapping(value = "/{username}")
     public User search(@PathVariable String username) {
@@ -43,7 +45,6 @@ public class UserController {
     }
 
     @GetMapping(value = "/me")
-
     public User whoami(HttpServletRequest req) {
         return userService.whoami(req);
     }
