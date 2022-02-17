@@ -38,7 +38,6 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable Long id) {
         toDoService.delete(id);
     }

@@ -5,6 +5,7 @@ import com.ua.todo.dto.UserDataDto;
 import com.ua.todo.model.User;
 import com.ua.todo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,10 @@ public class UserController {
     public String signup(@Valid @RequestBody UserDataDto user) {
         return userService.signup(user);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void delete(@PathVariable Long id){ userService.delete(id);}
 
     @GetMapping(value = "/{username}")
     public User search(@PathVariable String username) {
